@@ -14,6 +14,7 @@ abstract class Locale {
 
 	/** @var array */
 	protected static $months;
+	protected static $monthsShort;
 	/** @var array */
 	protected static $weekDays;
 	/** @var array */
@@ -25,6 +26,13 @@ abstract class Locale {
 		return static::$formats;
 	}
 
+	public static function getMonthShort($index) {
+		return static::$monthsShort[$index];
+	}
+
+	public static function getMonthsShort() {
+		return static::$monthsShort;
+	}
 	public static function getMonth($index) {
 		return static::$months[$index];
 	}

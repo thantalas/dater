@@ -87,12 +87,17 @@ class Dater {
 		$this->addFormatOption('F', function (\DateTime $datetime) use ($dater) {
 			return $dater->getLocale()->getMonth($datetime->format('n') - 1);
 		});
+		
+		$this->addFormatOption('M', function (\DateTime $datetime) use ($dater) {
+			return $dater->getLocale()->getMonthShort($datetime->format('n') -1);
+		});
 		$this->addFormatOption('l', function (\DateTime $datetime) use ($dater) {
 			return $dater->getLocale()->getWeekDay($datetime->format('N') - 1);
 		});
 		$this->addFormatOption('D', function (\DateTime $datetime) use ($dater) {
 			return $dater->getLocale()->getWeekDayShort($datetime->format('N') - 1);
 		});
+
 	}
 
 	public function setServerTimezone($timezone, $setSystemGlobal = true) {
@@ -308,7 +313,7 @@ class Dater {
 	 * Magic call of $dater->format($datetimeOrTimestamp, $formatAlias).
 	 *
 	 * Example:
-	 *   $dater->setFormat('shortDate', 'd/m')
+	 *   $dater->addFormat('shortDate', 'd/m')
 	 *   echo $dater->shortDate(time());
 	 * To annotate available formats-methods just add to Dater class annotations like:
 	 *   @method shortDate($datetimeOrTimestamp = null)
